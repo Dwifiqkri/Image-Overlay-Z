@@ -39,7 +39,7 @@ A user-friendly graphical application that adds a watermark over multiple images
 -   Python 3.8 or higher.
 -   Required libraries, which can be installed via pip:
     ```bash
-    pip install Pillow numpy
+    pip install pillow numpy
     ```
 
 #### Running the Application
@@ -91,7 +91,7 @@ Uma aplicação gráfica amigável que adiciona uma marca d’água sobre vária
 -   Python 3.8 ou superior.
 -   Bibliotecas necessárias, que podem ser instaladas via pip:
     ```bash
-    pip install Pillow numpy
+    pip install pillow numpy
     ```
 
 #### Executando a Aplicação
