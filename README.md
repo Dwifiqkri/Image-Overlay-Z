@@ -8,9 +8,7 @@
 # Image Overlay Z
 
 <p align="center">
-  <a href="https://github.com/SEU_USUARIO/SEU_REPOSITORIO">
-    <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status do Projeto">
-  </a>
+  <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status do Projeto">
   <a href="https://www.python.org/">
     <img src="https://img.shields.io/badge/Python-3.x-blue" alt="Linguagem">
   </a>
@@ -47,7 +45,7 @@ A user-friendly graphical application that adds an image overlay over multiple i
 -   Python 3.8 or higher.
 -   Required libraries, which can be installed via pip:
     ```bash
-    pip install Pillow numpy
+    pip install pillow numpy
     ```
 
 #### Running the Application
@@ -64,12 +62,6 @@ For a detailed step-by-step guide, please refer to our **[User Manual](User_Manu
 ### 🤝 How to Contribute
 
 Contributions are always welcome! If you have an idea to improve the project, feel free to create an *issue* or submit a *pull request*.
-
-1.  Fork the project.
-2.  Create a new branch (`git checkout -b feature/your-feature`).
-3.  Commit your changes (`git commit -m 'Add new feature'`).
-4.  Push to the branch (`git push origin feature/your-feature`).
-5.  Open a Pull Request.
 
 ### 📄 License
 
@@ -99,7 +91,7 @@ Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sob
 -   Python 3.8 ou superior.
 -   Bibliotecas necessárias, que podem ser instaladas via pip:
     ```bash
-    pip install Pillow numpy
+    pip install pillow numpy
     ```
 
 #### Executando a Aplicação
