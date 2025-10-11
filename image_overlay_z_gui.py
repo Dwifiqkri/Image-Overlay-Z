@@ -99,7 +99,7 @@ def run_gui(lang_code):
     splash.resizable(False, False)
     label = tk.Label(splash, text=L["title"], font=("Arial", 18, "bold"))
     label.pack(pady=30)
-    credits_text = "Image Overlay Tool by Ium101 - 2025"
+    credits_text = "Image Overlay / Sobreposição de Imagem - Ium101 - 2025"
     credits_label = tk.Label(splash, text=credits_text, font=("Arial", 9), fg="gray")
     credits_label.pack(side="bottom", pady=10)
     splash.update()
@@ -119,8 +119,8 @@ def run_gui(lang_code):
         return
     # Prompt for watermark height (pixels or percentage)
     height_prompt = {
-        "en": "Enter watermark height in pixels or percentage (e.g. 50 for 50px, 10% for 10% of image height, blank for default):",
-        "pt": "Digite a altura da marca d'água em pixels ou porcentagem (ex: 50 para 50px, 10% para 10% da altura da imagem, deixe em branco para padrão):"
+        "en": "Enter watermark height in pixels or percentage (e.g. 50 for 50px, 50% for 50% of image height, blank for default):",
+        "pt": "Digite a altura da marca d'água em pixels ou porcentagem (ex: 50 para 50px, 50% para 50% da altura da imagem, deixe em branco para padrão):"
     }
     root.deiconify()
     height_str = tk.simpledialog.askstring(L["title"], height_prompt[lang_code], parent=root)
@@ -128,28 +128,37 @@ def run_gui(lang_code):
     watermark_height = None
     watermark_height_percent = None
     if height_str:
-        if height_str.strip().endswith('%'):
+        s = height_str.strip()
+        if s.endswith('%'):
             try:
-                watermark_height_percent = float(height_str.strip().replace('%','')) / 100.0
+                watermark_height_percent = float(s.replace('%','')) / 100.0
             except Exception:
                 watermark_height_percent = None
         else:
             try:
-                watermark_height = int(height_str)
+                if '.' in s:
+                    watermark_height_percent = float(s) / 100.0
+                else:
+                    watermark_height = int(s)
             except Exception:
                 watermark_height = None
+                watermark_height_percent = None
     # Prompt for opacity (percentage)
     opacity_prompt = {
-        "en": "Choose watermark opacity (0-100%, e.g. 75 for 75%, default is 100):",
-        "pt": "Escolha a opacidade da marca d'água (0-100%, por exemplo 75 para 75%, padrão é 100):"
+        "en": "Choose watermark opacity (0-100%, e.g. 50 for 50%, default is 100):",
+        "pt": "Escolha a opacidade da marca d'água (0-100%, por exemplo 50 para 50%, padrão é 100):"
     }
     root.deiconify()
     opacity_str = tk.simpledialog.askstring(L["title"], opacity_prompt[lang_code], parent=root)
     root.withdraw()
     watermark_opacity = 1.0
     if opacity_str:
+        s = opacity_str.strip().replace(',', '.')
         try:
-            percent = int(opacity_str)
+            if s.endswith('%'):
+                percent = float(s.replace('%',''))
+            else:
+                percent = float(s)
             if percent < 1:
                 percent = 1
             elif percent > 100:
@@ -187,14 +196,22 @@ def run_gui(lang_code):
 
     def main_window():
         root = tk.Tk()
-        root.title("Image Overlay")
-        root.geometry("400x220")
-        btn_en = tk.Button(root, text="Proceed in English", command=lambda: [root.destroy(), run_gui("en")], height=2, width=30)
-        btn_en.pack(pady=10)
-        btn_pt = tk.Button(root, text="Prosseguir em Português Brasileiro", command=lambda: [root.destroy(), run_gui("pt")], height=2, width=30)
-        btn_pt.pack(pady=10)
-        credits_lbl = tk.Label(root, text="Feito pelo Usuário Ium101 do GitHub / Made by User Ium101 from GitHub", font=("Arial", 8))
-        credits_lbl.pack(side="bottom", pady=10)
+        if lang_code == "pt":
+            root.title(LANGUAGES["pt"]["title"])
+            btn_en = tk.Button(root, text="Prosseguir em Inglês", command=lambda: [root.destroy(), run_gui("en")], height=2, width=30)
+            btn_en.pack(pady=10)
+            btn_pt = tk.Button(root, text="Prosseguir em Português Brasileiro", command=lambda: [root.destroy(), run_gui("pt")], height=2, width=30)
+            btn_pt.pack(pady=10)
+            credits_lbl = tk.Label(root, text="Feito por Ium101 do GitHub", font=("Arial", 8))
+            credits_lbl.pack(side="bottom", pady=10)
+        else:
+            root.title(LANGUAGES["en"]["title"])
+            btn_en = tk.Button(root, text="Proceed in English", command=lambda: [root.destroy(), run_gui("en")], height=2, width=30)
+            btn_en.pack(pady=10)
+            btn_pt = tk.Button(root, text="Proceed in Brazilian Portuguese", command=lambda: [root.destroy(), run_gui("pt")], height=2, width=30)
+            btn_pt.pack(pady=10)
+            credits_lbl = tk.Label(root, text="Made by Ium101 from GitHub", font=("Arial", 8))
+            credits_lbl.pack(side="bottom", pady=10)
     err = overlay_images(overlay_path, target_paths, output_folder, watermark_height, watermark_opacity, watermark_height_percent)
 
     if __name__ == "__main__":

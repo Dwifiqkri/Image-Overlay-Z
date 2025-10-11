@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['image_overlay_gui.py'],
+    ['image_overlay_z_gui.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='image_overlay_gui',
+    name='image_overlay_z_gui',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
