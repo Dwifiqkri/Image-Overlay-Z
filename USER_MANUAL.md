@@ -184,6 +184,7 @@ Você pode posicionar a sobreposição em qualquer um dos quatro cantos da image
     -   **Solução:** Certifique-se de que os caminhos dos arquivos selecionados para a sobreposição e as imagens de destino estão corretos e que você tem permissão para salvar arquivos na pasta de saída escolhida.
 
 -   **A aplicação fecha inesperadamente:**
-    -   **Solução:** Se você fechar qualquer uma das janelas de seleção de arquivo ou de opções, a aplicação será encerrada. Para concluir o processo, você deve fornecer as informações em todos os passos.
+    -   **Solution:** Se você fechar qualquer uma das janelas de seleção de arquivo ou de opções, a aplicação será encerrada. Para concluir o processo, você deve fornecer as informações em todos os passos.
 
 For other issues, please open an *issue* on our GitHub repository.
+```
