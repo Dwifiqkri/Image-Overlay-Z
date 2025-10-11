@@ -1,0 +1,342 @@
+import os
+import tkinter as tk
+from tkinter import filedialog, messagebox, ttk
+from PIL import Image, ImageStat
+import numpy as np
+
+import os
+import tkinter as tk
+from tkinter import filedialog, messagebox, ttk
+from PIL import Image, ImageStat
+import numpy as np
+
+LANGUAGES = {
+    "en": {
+        "title": "Image Overlay",
+        "select_overlay": "Select the overlay image (with transparent background)",
+        "select_targets": "Select the target images to apply the overlay",
+        "success": "Overlay applied successfully to all images!",
+        "error": "Error applying overlay: {err}",
+        "output_folder": "Select output folder for processed images",
+        "done": "Done!",
+        "exit": "Press any button to exit",
+        "auto_recolor": "Auto-recolor watermark based on background?",
+        "analyzing": "Analyzing image...",
+        "processing": "Processing: {}",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "pt": {
+        "title": "Sobreposição de Imagem",
+        "select_overlay": "Selecione a imagem de sobreposição (com fundo transparente)",
+        "select_targets": "Selecione as imagens alvo para aplicar a sobreposição",
+        "success": "Sobreposição aplicada com sucesso a todas as imagens!",
+        "error": "Erro ao aplicar sobreposição: {err}",
+        "output_folder": "Selecione a pasta de saída para as imagens processadas",
+        "done": "Concluído!",
+        "exit": "Pressione qualquer botão para sair",
+        "auto_recolor": "Recolorizar marca d'água automaticamente com base no fundo?",
+        "analyzing": "Analisando imagem...",
+        "processing": "Processando: {}",
+        "yes": "Sim",
+        "no": "Não"
+    }
+}
+
+def analyze_brightness(image, bbox):
+    # Extract the region where watermark will be placed
+    region = image.crop(bbox)
+    # Convert to grayscale for brightness analysis
+    gray_region = region.convert('L')
+    stat = ImageStat.Stat(gray_region)
+    mean_brightness = stat.mean[0]
+    return mean_brightness / 255.0  # Normalize to 0-1
+
+def adjust_overlay_color(overlay, brightness):
+    # Create a new overlay with adjusted color based on background brightness
+    adjusted = overlay.copy()
+    # Split into channels
+    r, g, b, a = adjusted.split()
+    
+    if brightness > 0.5:  # Dark background detected
+        # Make overlay lighter
+        factor = max(1.0, (brightness + 0.3) * 2)
+        r = r.point(lambda x: min(255, int(x * factor)))
+        g = g.point(lambda x: min(255, int(x * factor)))
+        b = b.point(lambda x: min(255, int(x * factor)))
+    else:  # Light background detected
+        # Make overlay darker
+        factor = min(1.0, brightness * 0.7)
+        r = r.point(lambda x: int(x * factor))
+        g = g.point(lambda x: int(x * factor))
+        b = b.point(lambda x: int(x * factor))
+    
+    # Recombine channels
+    return Image.merge('RGBA', (r, g, b, a))
+
+def overlay_images(overlay_path, target_paths, output_folder, watermark_height=None, watermark_opacity=1.0, watermark_height_percent=None, watermark_position="bottom_right", auto_recolor=False, progress_var=None, status_label=None):
+    overlay = Image.open(overlay_path).convert("RGBA")
+    overlay_w, overlay_h = overlay.size
+    total_files = len(target_paths)
+    for idx, target_path in enumerate(target_paths):
+        try:
+            base = Image.open(target_path).convert("RGBA")
+            base_w, base_h = base.size
+            aspect_ratio = overlay_w / overlay_h
+            # Watermark size logic
+            if watermark_height is not None and watermark_height > 0:
+                new_overlay_h = min(watermark_height, base_h)
+                new_overlay_w = int(new_overlay_h * aspect_ratio)
+                new_overlay_w = min(new_overlay_w, base_w)
+            elif watermark_height_percent is not None:
+                new_overlay_h = int(base_h * watermark_height_percent)
+                new_overlay_w = int(new_overlay_h * aspect_ratio)
+                new_overlay_w = min(new_overlay_w, base_w)
+                new_overlay_h = min(new_overlay_h, base_h)
+            else:
+                base_area = base_w * base_h
+                target_overlay_area = int(base_area * 0.03)
+                new_overlay_h = int((target_overlay_area / aspect_ratio) ** 0.5)
+                new_overlay_w = int(new_overlay_h * aspect_ratio)
+                new_overlay_w = min(new_overlay_w, base_w)
+                new_overlay_h = min(new_overlay_h, base_h)
+            overlay_resized = overlay.resize((new_overlay_w, new_overlay_h), Image.Resampling.LANCZOS)
+            # Apply opacity
+            if watermark_opacity < 1.0:
+                alpha = overlay_resized.split()[3]
+                alpha = alpha.point(lambda p: int(p * watermark_opacity))
+                overlay_resized.putalpha(alpha)
+
+            # Auto-recolor logic
+            if auto_recolor:
+                if status_label:
+                    status_label.config(text=L["analyzing"].format(os.path.basename(target_path)))
+                # Calculate watermark position
+                if watermark_position == "top_left":
+                    bbox = (0, 0, new_overlay_w, new_overlay_h)
+                elif watermark_position == "top_right":
+                    bbox = (base_w - new_overlay_w, 0, base_w, new_overlay_h)
+                elif watermark_position == "bottom_left":
+                    bbox = (0, base_h - new_overlay_h, new_overlay_w, base_h)
+                else:  # bottom_right
+                    bbox = (base_w - new_overlay_w, base_h - new_overlay_h, base_w, base_h)
+                
+                brightness = analyze_brightness(base, bbox)
+                overlay_resized = adjust_overlay_color(overlay_resized, brightness)
+
+            combined = base.copy()
+            # Watermark position logic
+            if watermark_position == "top_left":
+                pos_x, pos_y = 0, 0
+            elif watermark_position == "top_right":
+                pos_x, pos_y = base_w - new_overlay_w, 0
+            elif watermark_position == "bottom_left":
+                pos_x, pos_y = 0, base_h - new_overlay_h
+            else:  # bottom_right
+                pos_x, pos_y = base_w - new_overlay_w, base_h - new_overlay_h
+            combined.paste(overlay_resized, (pos_x, pos_y), overlay_resized)
+            out_path = os.path.join(output_folder, os.path.basename(target_path))
+            ext = os.path.splitext(out_path)[1].lower()
+            # Save with highest quality for each format
+            if ext in [".jpg", ".jpeg"]:
+                combined = combined.convert("RGB")
+                combined.save(out_path, format="JPEG", quality=100, subsampling=0, optimize=True)
+            elif ext == ".png":
+                combined.save(out_path, format="PNG", optimize=True, compress_level=0)
+            elif ext == ".gif":
+                combined = combined.convert("RGB")
+                combined.save(out_path, format="GIF")
+            elif ext == ".bmp":
+                combined = combined.convert("RGB")
+                combined.save(out_path, format="BMP")
+            else:
+                combined.save(out_path)
+        except Exception as e:
+            print(f"Error processing {target_path}: {e}")
+    return None
+
+def run_gui(lang_code):
+    L = LANGUAGES[lang_code]
+    main_window = tk.Tk()
+    main_window.title(L["title"])
+    main_window.geometry("600x400")
+    
+    # Variables for file paths
+    overlay_path = None
+    target_paths = None
+    output_folder = None
+    
+    # Create main frame
+    main_frame = ttk.Frame(main_window, padding="10")
+    main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+    
+    # Create title
+    title_label = ttk.Label(main_frame, text=L["title"], font=("Arial", 18, "bold"))
+    title_label.grid(row=0, column=0, columnspan=2, pady=10)
+    
+    # File selection buttons
+    select_overlay_btn = ttk.Button(main_frame, text=L["select_overlay"],
+                                  command=lambda: select_overlay())
+    select_overlay_btn.grid(row=1, column=0, columnspan=2, pady=5, sticky=tk.EW)
+    
+    select_targets_btn = ttk.Button(main_frame, text=L["select_targets"],
+                                  command=lambda: select_targets())
+    select_targets_btn.grid(row=2, column=0, columnspan=2, pady=5, sticky=tk.EW)
+    
+    select_output_btn = ttk.Button(main_frame, text=L["output_folder"],
+                                 command=lambda: select_output())
+    select_output_btn.grid(row=3, column=0, columnspan=2, pady=5, sticky=tk.EW)
+    
+    # Progress bar and status
+    progress_var = tk.DoubleVar()
+    progress_bar = ttk.Progressbar(main_frame, length=300, mode='determinate',
+                                 variable=progress_var)
+    progress_bar.grid(row=4, column=0, columnspan=2, pady=10, sticky=tk.EW)
+    
+    status_label = ttk.Label(main_frame, text="")
+    status_label.grid(row=5, column=0, columnspan=2, pady=5)
+    
+    # Auto-recolor checkbox
+    auto_recolor_var = tk.BooleanVar()
+    auto_recolor_check = ttk.Checkbutton(main_frame, text=L["auto_recolor"],
+                                       variable=auto_recolor_var)
+    auto_recolor_check.grid(row=6, column=0, columnspan=2, pady=5)
+    
+    # Credits
+    credits_text = "Made by Ium101 from GitHub" if lang_code == "en" else "Feito por Ium101 do GitHub"
+    credits_label = ttk.Label(main_frame, text=credits_text, font=("Arial", 8))
+    credits_label.grid(row=7, column=0, columnspan=2, pady=10)
+    def select_overlay():
+        nonlocal overlay_path
+        path = filedialog.askopenfilename(title=L["select_overlay"], 
+                                        filetypes=[("PNG Images", "*.png;*.jpg;*.jpeg;*.bmp")])
+        if path:
+            overlay_path = path
+            select_overlay_btn.config(style='Success.TButton')
+            check_all_selected()
+    
+    def select_targets():
+        nonlocal target_paths
+        paths = filedialog.askopenfilenames(title=L["select_targets"],
+                                          filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.bmp")])
+        if paths:
+            target_paths = paths
+            select_targets_btn.config(style='Success.TButton')
+            check_all_selected()
+    
+    def select_output():
+        nonlocal output_folder
+        folder = filedialog.askdirectory(title=L["output_folder"])
+        if folder:
+            output_folder = folder
+            select_output_btn.config(style='Success.TButton')
+            check_all_selected()
+            
+    def check_all_selected():
+        if overlay_path and target_paths and output_folder:
+            show_options()
+    # Prompt for watermark height (pixels or percentage)
+    height_prompt = {
+        "en": "Enter watermark height in pixels or percentage (e.g. 50 for 50px, 50% for 50% of image height, blank for default):",
+        "pt": "Digite a altura da marca d'água em pixels ou porcentagem (ex: 50 para 50px, 50% para 50% da altura da imagem, deixe em branco para padrão):"
+    }
+    root.deiconify()
+    height_str = tk.simpledialog.askstring(L["title"], height_prompt[lang_code], parent=root)
+    root.withdraw()
+    watermark_height = None
+    watermark_height_percent = None
+    if height_str:
+        s = height_str.strip()
+        if s.endswith('%'):
+            try:
+                watermark_height_percent = float(s.replace('%','')) / 100.0
+            except Exception:
+                watermark_height_percent = None
+        else:
+            try:
+                if '.' in s:
+                    watermark_height_percent = float(s) / 100.0
+                else:
+                    watermark_height = int(s)
+            except Exception:
+                watermark_height = None
+                watermark_height_percent = None
+    # Prompt for opacity (percentage)
+    opacity_prompt = {
+        "en": "Choose watermark opacity (0-100%, e.g. 50 for 50%, default is 100):",
+        "pt": "Escolha a opacidade da marca d'água (0-100%, por exemplo 50 para 50%, padrão é 100):"
+    }
+    root.deiconify()
+    opacity_str = tk.simpledialog.askstring(L["title"], opacity_prompt[lang_code], parent=root)
+    root.withdraw()
+    watermark_opacity = 1.0
+    if opacity_str:
+        s = opacity_str.strip().replace(',', '.')
+        try:
+            if s.endswith('%'):
+                percent = float(s.replace('%',''))
+            else:
+                percent = float(s)
+            if percent < 1:
+                percent = 1
+            elif percent > 100:
+                percent = 100
+            watermark_opacity = percent / 100.0
+        except Exception:
+            watermark_opacity = 1.0
+    # Prompt for position
+    position_prompt = {
+        "en": "Choose watermark position: top left, top right, bottom left, bottom right (default is bottom right):",
+        "pt": "Escolha a posição da marca d'água: canto superior esquerdo, superior direito, inferior esquerdo, inferior direito (padrão é inferior direito):"
+    }
+    root.deiconify()
+    position_str = tk.simpledialog.askstring(L["title"], position_prompt[lang_code], parent=root)
+    root.withdraw()
+    position_map = {
+        "top left": "top_left",
+        "superior esquerdo": "top_left",
+        "top right": "top_right",
+        "superior direito": "top_right",
+        "bottom left": "bottom_left",
+        "inferior esquerdo": "bottom_left",
+        "bottom right": "bottom_right",
+        "inferior direito": "bottom_right"
+    }
+    watermark_position = position_map.get(position_str.strip().lower(), "bottom_right") if position_str else "bottom_right"
+    err = overlay_images(overlay_path, target_paths, output_folder, watermark_height, watermark_opacity, watermark_height_percent, watermark_position)
+    if err:
+        messagebox.showerror(L["title"], L["error"].format(err=err))
+    else:
+        messagebox.showinfo(L["title"], L["success"])
+        root.destroy()
+        import sys
+        sys.exit()
+
+    def main_window():
+        root = tk.Tk()
+        if lang_code == "pt":
+            root.title(LANGUAGES["pt"]["title"])
+            btn_en = tk.Button(root, text="Prosseguir em Inglês", command=lambda: [root.destroy(), run_gui("en")], height=2, width=30)
+            btn_en.pack(pady=10)
+            btn_pt = tk.Button(root, text="Prosseguir em Português Brasileiro", command=lambda: [root.destroy(), run_gui("pt")], height=2, width=30)
+            btn_pt.pack(pady=10)
+            credits_lbl = tk.Label(root, text="Feito por Ium101 do GitHub", font=("Arial", 8))
+            credits_lbl.pack(side="bottom", pady=10)
+        else:
+            root.title(LANGUAGES["en"]["title"])
+            btn_en = tk.Button(root, text="Proceed in English", command=lambda: [root.destroy(), run_gui("en")], height=2, width=30)
+            btn_en.pack(pady=10)
+            btn_pt = tk.Button(root, text="Proceed in Brazilian Portuguese", command=lambda: [root.destroy(), run_gui("pt")], height=2, width=30)
+            btn_pt.pack(pady=10)
+            credits_lbl = tk.Label(root, text="Made by Ium101 from GitHub", font=("Arial", 8))
+            credits_lbl.pack(side="bottom", pady=10)
+    err = overlay_images(overlay_path, target_paths, output_folder, watermark_height, watermark_opacity, watermark_height_percent)
+
+    if __name__ == "__main__":
+        main_window()
+
+if __name__ == "__main__":
+    # Simple language selection
+    lang_choice = tk.simpledialog.askstring("Language", "Select language / Selecione o idioma:\n1. Português Brasileiro\n2. English\nEnter 1 or 2:")
+    lang_code = "pt" if lang_choice == "1" else "en"
+    run_gui(lang_code)
