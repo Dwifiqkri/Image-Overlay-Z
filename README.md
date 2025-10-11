@@ -10,8 +10,9 @@
 <p align="center">
   <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status do Projeto">
   <img src="https://img.shields.io/badge/Python-3.8+-blue" alt="Linguagem">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-yellow" alt="Licença">
+  <img src="https://img.shields.io/badge/OS-Windows | Linux | macOS-blue" alt="Compatibilidade">
+  <a href="https://www.gnu.org/licenses/gpl-3.0">
+    <img src="https://img.shields.io/badge/License-GPLv3-blue" alt="License: GPL v3">
   </a>
 </p>
 
@@ -63,13 +64,13 @@ Contributions are always welcome! If you have an idea to improve the project, fe
 
 ### 📄 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 (GPLv3). See the [LICENSE](LICENSE) file for details.
 
 ---
 
 ## Português (Brasil)
 
-Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sobre várias imagens simultaneamente (formato PNG, JPG). Oferece personalização completa, incluindo uma função inteligente para ajustar automaticamente o tom da sobreposição para uma visibilidade perfeita em qualquer fundo.
+Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sobre várias imagens simultaneamente (formatos PNG, JPG). Oferece personalização completa, incluindo uma função inteligente para ajustar automaticamente o tom da sobreposição para uma visibilidade perfeita em qualquer fundo.
 
 ### ✨ Funcionalidades Principais
 
@@ -105,8 +106,8 @@ Para um guia detalhado com o passo a passo, consulte o nosso **[Manual do Usuár
 
 ### 🤝 Como Contribuir
 
-Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o projeto, sinta-se à vontade para criar uma *issue* ou enviar um *pull request*.
+Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o projeto.
 
 ### 📄 License
 
-Este projecto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a licença GNU General Public License v3.0 (GPLv3). Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
