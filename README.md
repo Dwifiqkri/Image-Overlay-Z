@@ -10,7 +10,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status do Projeto">
   <a href="https://www.python.org/">
-    <img src="https://img.shields.io/badge/Python-3.x-blue" alt="Linguagem">
+    <img src="https://img.shields.io/badge/Python-3.8+-blue" alt="Linguagem">
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-yellow" alt="Licença">
@@ -23,11 +23,11 @@
 
 ---
 
-<h2>English</h2>
+## English
 
-A user-friendly graphical application that adds an image overlay over multiple images at once (PNG, JPG, GIF formats). It offers full customization, including an intelligent feature to automatically adjust the overlay's tone for perfect visibility on any background.
+A user-friendly graphical application that adds an image overlay over multiple images at once (PNG, JPG formats). It offers full customization, including an intelligent feature to automatically adjust the overlay's tone for perfect visibility on any background.
 
-<h3>✨ Key Features</h3>
+### ✨ Key Features
 
 -   **Intuitive Graphical Interface (GUI):** No command line needed. An easy-to-use interface guides you through the process.
 -   **Intelligent Auto-Recolor:** Automatically analyzes the background of each image and adjusts the overlay to be dark on light areas and light on dark areas, ensuring maximum visibility.
@@ -36,11 +36,11 @@ A user-friendly graphical application that adds an image overlay over multiple i
     -   Adjust the overlay **size** (in pixels or percentage).
     -   Choose the exact **position** (top-left, bottom-right, etc.).
     -   Set the **opacity** level for a more subtle effect.
--   **Multiple Format Support:** Works with `PNG`, `JPG/JPEG`, `GIF`, and `BMP` files.
+-   **Multiple Format Support:** Works with `PNG`, `JPG/JPEG`, and `BMP` files.
 
-<h3>🚀 How to Run</h3>
+### 🚀 How to Run
 
-<h4>Prerequisites</h4>
+#### Prerequisites
 
 -   Python 3.8 or higher.
 -   Required libraries, which can be installed via pip:
@@ -48,32 +48,32 @@ A user-friendly graphical application that adds an image overlay over multiple i
     pip install pillow numpy
     ```
 
-<h4>Running the Application</h4>
+#### Running the Application
 
 1.  Make sure you have all the required libraries installed.
 2.  Run the script from your terminal:
     ```bash
-    python your_script_name.py
+    python image_overlay_z_gui.py
     ```
 3.  The application window will open, allowing you to select your language and begin the process.
 
 For a detailed step-by-step guide, please refer to our **[User Manual](User_Manual.md)**.
 
-<h3>🤝 How to Contribute</h3>
+### 🤝 How to Contribute
 
 Contributions are always welcome! If you have an idea to improve the project, feel free to create an *issue* or submit a *pull request*.
 
-<h3>📄 License</h3>
+### 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-<h2>Português (Brasil)</h2>
+## Português (Brasil)
 
-Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sobre várias imagens simultaneamente (formatos PNG, JPG, GIF). Oferece personalização completa, incluindo uma função inteligente para ajustar automaticamente o tom da sobreposição para uma visibilidade perfeita em qualquer fundo.
+Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sobre várias imagens simultaneamente (formatos PNG, JPG). Oferece personalização completa, incluindo uma função inteligente para ajustar automaticamente o tom da sobreposição para uma visibilidade perfeita em qualquer fundo.
 
-<h3>✨ Funcionalidades Principais</h3>
+### ✨ Funcionalidades Principais
 
 -   **Interface Gráfica Intuitiva (GUI):** Não é necessário usar a linha de comando. Uma interface fácil de usar guia você por todo o processo.
 -   **Ajuste de Cor Automático e Inteligente:** Analisa automaticamente o fundo de cada imagem e ajusta a sobreposição para ficar escura em áreas claras e clara em áreas escuras, garantindo máxima visibilidade.
@@ -82,11 +82,11 @@ Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sob
     -   Ajuste o **tamanho** da sobreposição (em pixels ou porcentagem).
     -   Escolha a **posição** exata (canto superior esquerdo, inferior direito, etc.).
     -   Defina o nível de **opacidade** para um efeito mais sutil.
--   **Suporte a Múltiplos Formatos:** Compatível com arquivos `PNG`, `JPG/JPEG`, `GIF` e `BMP`.
+-   **Suporte a Múltiplos Formatos:** Compatível com arquivos `PNG`, `JPG/JPEG` e `BMP`.
 
-<h3>🚀 Como Executar</h3>
+### 🚀 Como Executar
 
-<h4>Pré-requisitos</h4>
+#### Pré-requisitos
 
 -   Python 3.8 ou superior.
 -   Bibliotecas necessárias, que podem ser instaladas via pip:
@@ -94,21 +94,21 @@ Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sob
     pip install pillow numpy
     ```
 
-<h4>Executando a Aplicação</h4>
+#### Executando a Aplicação
 
 1.  Certifique-se de que todas as bibliotecas necessárias estão instaladas.
 2.  Execute o script a partir do seu terminal:
     ```bash
-    python nome_do_seu_script.py
+    python image_overlay_z_gui.py
     ```
 3.  A janela da aplicação será aberta, permitindo que você escolha seu idioma e inicie o processo.
 
 Para um guia detalhado com o passo a passo, consulte o nosso **[Manual do Usuário](User_Manual.md)**.
 
-<h3>🤝 Como Contribuir</h3>
+### 🤝 How to Contribute
 
-Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o projeto, sinta-se à vontade para criar uma *issue* ou enviar um *pull request*.
+Contributions are always welcome! If you have an idea to improve the project, feel free to create an *issue* or submit a *pull request*.
 
-<h3>📄 License</h3>
+### 📄 License
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projecto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
