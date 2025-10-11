@@ -9,9 +9,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status do Projeto">
-  <a href="https://www.python.org/">
-    <img src="https://img.shields.io/badge/Python-3.8+-blue" alt="Linguagem">
-  </a>
+  <img src="https://img.shields.io/badge/Python-3.8+-blue" alt="Linguagem">
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-yellow" alt="Licença">
   </a>
@@ -71,7 +69,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Português (Brasil)
 
-Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sobre várias imagens simultaneamente (formatos PNG, JPG). Oferece personalização completa, incluindo uma função inteligente para ajustar automaticamente o tom da sobreposição para uma visibilidade perfeita em qualquer fundo.
+Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sobre várias imagens simultaneamente (formato PNG, JPG). Oferece personalização completa, incluindo uma função inteligente para ajustar automaticamente o tom da sobreposição para uma visibilidade perfeita em qualquer fundo.
 
 ### ✨ Funcionalidades Principais
 
@@ -105,9 +103,9 @@ Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sob
 
 Para um guia detalhado com o passo a passo, consulte o nosso **[Manual do Usuário](User_Manual.md)**.
 
-### 🤝 How to Contribute
+### 🤝 Como Contribuir
 
-Contributions are always welcome! If you have an idea to improve the project, feel free to create an *issue* or submit a *pull request*.
+Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o projeto, sinta-se à vontade para criar uma *issue* ou enviar um *pull request*.
 
 ### 📄 License
 
