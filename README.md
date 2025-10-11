@@ -9,6 +9,9 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status do Projeto">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/Python-3.x-blue" alt="Linguagem">
+  </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-yellow" alt="Licença">
   </a>
@@ -20,11 +23,11 @@
 
 ---
 
-## English
+<h2>English</h2>
 
 A user-friendly graphical application that adds an image overlay over multiple images at once (PNG, JPG, GIF formats). It offers full customization, including an intelligent feature to automatically adjust the overlay's tone for perfect visibility on any background.
 
-### ✨ Key Features
+<h3>✨ Key Features</h3>
 
 -   **Intuitive Graphical Interface (GUI):** No command line needed. An easy-to-use interface guides you through the process.
 -   **Intelligent Auto-Recolor:** Automatically analyzes the background of each image and adjusts the overlay to be dark on light areas and light on dark areas, ensuring maximum visibility.
@@ -35,9 +38,9 @@ A user-friendly graphical application that adds an image overlay over multiple i
     -   Set the **opacity** level for a more subtle effect.
 -   **Multiple Format Support:** Works with `PNG`, `JPG/JPEG`, `GIF`, and `BMP` files.
 
-### 🚀 How to Run
+<h3>🚀 How to Run</h3>
 
-#### Prerequisites
+<h4>Prerequisites</h4>
 
 -   Python 3.8 or higher.
 -   Required libraries, which can be installed via pip:
@@ -45,7 +48,7 @@ A user-friendly graphical application that adds an image overlay over multiple i
     pip install pillow numpy
     ```
 
-#### Running the Application
+<h4>Running the Application</h4>
 
 1.  Make sure you have all the required libraries installed.
 2.  Run the script from your terminal:
@@ -56,21 +59,21 @@ A user-friendly graphical application that adds an image overlay over multiple i
 
 For a detailed step-by-step guide, please refer to our **[User Manual](User_Manual.md)**.
 
-### 🤝 How to Contribute
+<h3>🤝 How to Contribute</h3>
 
 Contributions are always welcome! If you have an idea to improve the project, feel free to create an *issue* or submit a *pull request*.
 
-### 📄 License
+<h3>📄 License</h3>
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Português (Brasil)
+<h2>Português (Brasil)</h2>
 
 Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sobre várias imagens simultaneamente (formatos PNG, JPG, GIF). Oferece personalização completa, incluindo uma função inteligente para ajustar automaticamente o tom da sobreposição para uma visibilidade perfeita em qualquer fundo.
 
-### ✨ Funcionalidades Principais
+<h3>✨ Funcionalidades Principais</h3>
 
 -   **Interface Gráfica Intuitiva (GUI):** Não é necessário usar a linha de comando. Uma interface fácil de usar guia você por todo o processo.
 -   **Ajuste de Cor Automático e Inteligente:** Analisa automaticamente o fundo de cada imagem e ajusta a sobreposição para ficar escura em áreas claras e clara em áreas escuras, garantindo máxima visibilidade.
@@ -81,9 +84,9 @@ Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sob
     -   Defina o nível de **opacidade** para um efeito mais sutil.
 -   **Suporte a Múltiplos Formatos:** Compatível com arquivos `PNG`, `JPG/JPEG`, `GIF` e `BMP`.
 
-### 🚀 Como Executar
+<h3>🚀 Como Executar</h3>
 
-#### Pré-requisitos
+<h4>Pré-requisitos</h4>
 
 -   Python 3.8 ou superior.
 -   Bibliotecas necessárias, que podem ser instaladas via pip:
@@ -91,7 +94,7 @@ Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sob
     pip install pillow numpy
     ```
 
-#### Executando a Aplicação
+<h4>Executando a Aplicação</h4>
 
 1.  Certifique-se de que todas as bibliotecas necessárias estão instaladas.
 2.  Execute o script a partir do seu terminal:
@@ -102,10 +105,10 @@ Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sob
 
 Para um guia detalhado com o passo a passo, consulte o nosso **[Manual do Usuário](User_Manual.md)**.
 
-### 🤝 Como Contribuir
+<h3>🤝 Como Contribuir</h3>
 
 Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o projeto, sinta-se à vontade para criar uma *issue* ou enviar um *pull request*.
 
-### 📄 License
+<h3>📄 License</h3>
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
