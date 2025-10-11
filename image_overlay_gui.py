@@ -70,10 +70,18 @@ def overlay_images(overlay_path, target_paths, output_folder, watermark_height=N
             combined.paste(overlay_resized, (pos_x, pos_y), overlay_resized)
             out_path = os.path.join(output_folder, os.path.basename(target_path))
             ext = os.path.splitext(out_path)[1].lower()
-            if ext in [".jpg", ".jpeg", ".gif"]:
+            # Save with highest quality for each format
+            if ext in [".jpg", ".jpeg"]:
                 combined = combined.convert("RGB")
-            if ext == ".png":
-                combined.save(out_path, format="PNG", optimize=True)
+                combined.save(out_path, format="JPEG", quality=100, subsampling=0, optimize=True)
+            elif ext == ".png":
+                combined.save(out_path, format="PNG", optimize=True, compress_level=0)
+            elif ext == ".gif":
+                combined = combined.convert("RGB")
+                combined.save(out_path, format="GIF")
+            elif ext == ".bmp":
+                combined = combined.convert("RGB")
+                combined.save(out_path, format="BMP")
             else:
                 combined.save(out_path)
         except Exception as e:
