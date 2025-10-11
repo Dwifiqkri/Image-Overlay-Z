@@ -9,9 +9,6 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status do Projeto">
-  <a href="https://www.python.org/">
-    <img src="https://img.shields.io/badge/Python-3.x-blue" alt="Linguagem">
-  </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-yellow" alt="Licença">
   </a>
