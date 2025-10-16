@@ -106,7 +106,7 @@ Para um guia detalhado com o passo a passo, consulte o nosso **[Manual do Usuár
 
 ### 🤝 Como Contribuir
 
-Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o projeto.
+Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o projeto, se sinta livre para criar uma *issue* ou enviar uma *pull request*.
 
 ### 📄 License
 
