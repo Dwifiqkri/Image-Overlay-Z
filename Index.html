@@ -491,8 +491,8 @@
                     <div class="option-group">
                         <label for="position" id="positionLabel">Position</label>
                         <select id="position">
+                            <option value="bottom_left">Bottom Left</option>                            
                             <option value="bottom_right">Bottom Right</option>
-                            <option value="bottom_left">Bottom Left</option>
                             <option value="top_right">Top Right</option>
                             <option value="top_left">Top Left</option>
                         </select>
@@ -604,7 +604,7 @@
                         <div class="contact-icon">👨‍💻</div>
                         <div class="contact-text">
                             <h3 id="devTitle">Developer</h3>
-                            <p>Emmanoel</p>
+                            <p>Ium101</p>
                         </div>
                     </div>
 
@@ -620,7 +620,7 @@
                         <div class="contact-icon">💬</div>
                         <div class="contact-text">
                             <h3 id="feedbackTitle">Feedback & Support</h3>
-                            <p id="feedbackText">Found a bug or have a feature request? Open an issue on <a href="https://github.com/Ium101/Image-Overlay-Z" target="_blank">GitHub!</a></p>
+                            <p id="feedbackText">Found a bug or have a feature request? <a href="https://github.com/Ium101/Image-Overlay-Z/issues" target="_blank">Open an issue on GitHub!</a></p>
                         </div>
                     </div>
 
@@ -693,7 +693,8 @@
                 contactTitle: "Get in Touch",
                 devTitle: "Developer",
                 feedbackTitle: "Feedback & Support",
-                feedbackText: "Found a bug or have a feature request? Open an issue on GitHub!",
+                feedbackText: "Found a bug or have a feature request? ",
+                feedbackLink: "Open an issue on GitHub!",
                 contributeTitle: "Contribute",
                 contributeText: "This is an open-source project. Contributions are welcome!",
                 licenseTitle: "License & Credits",
@@ -721,7 +722,7 @@
                 done: "Concluído! Clique nas imagens para baixar",
                 error: "Erro: ",
                 aboutTitle: "Sobre o Image Overlay",
-                aboutText1: "Image Overlay é uma ferramenta web poderosa projetada para ajudá-lo(a) a adicionar marcas d'água às suas imagens de forma rápida e eficiente. Seja você fotógrafo, designer ou criador de conteúdo, esta ferramenta facilita proteger seu trabalho e marcar suas imagens.",
+                aboutText1: "Image Overlay é uma ferramenta web poderosa projetada para ajudá-lo a adicionar marcas d'água às suas imagens de forma rápida e eficiente. Seja você fotógrafo, designer ou criador de conteúdo, esta ferramenta facilita proteger seu trabalho e marcar suas imagens.",
                 aboutText2: "Esta aplicação funciona inteiramente no seu navegador, o que significa que suas imagens nunca saem do seu computador. Todo o processamento é feito localmente, garantindo sua privacidade e segurança.",
                 featuresTitle: "Recursos",
                 feature1Title: "Cores Personalizadas",
@@ -744,7 +745,8 @@
                 contactTitle: "Entre em Contato",
                 devTitle: "Desenvolvedor",
                 feedbackTitle: "Feedback & Suporte",
-                feedbackText: "Encontrou um bug ou tem uma sugestão de recurso? Abra um issue no GitHub!",
+                feedbackText: "Encontrou um bug ou tem uma sugestão de recurso? ",
+                feedbackLink: "Abra um issue no GitHub!",
                 contributeTitle: "Contribuir",
                 contributeText: "Este é um projeto de código aberto. Contribuições são bem-vindas!",
                 licenseTitle: "Licença & Créditos",
@@ -795,6 +797,12 @@
                     }
                 }
             });
+
+            // Update feedback text with link separately
+            const feedbackTextElement = document.getElementById('feedbackText');
+            if (feedbackTextElement) {
+                feedbackTextElement.innerHTML = t.feedbackText + '<a href="https://github.com/Ium101/Image-Overlay-Z/issues" target="_blank">' + t.feedbackLink + '</a>';
+            }
 
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
