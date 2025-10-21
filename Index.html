@@ -30,6 +30,44 @@
             padding: 40px;
         }
 
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1em;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .nav-tab:hover {
+            color: #667eea;
+        }
+
+        .nav-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Page containers */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
         h1 {
             text-align: center;
             color: #333;
@@ -161,11 +199,18 @@
             cursor: pointer;
         }
 
+        .checkbox-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
         .checkbox-group {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-top: 15px;
         }
 
         input[type="checkbox"] {
@@ -264,6 +309,117 @@
             font-size: 0.9em;
         }
 
+        /* Contact Page Styles */
+        .contact-content {
+            padding: 20px;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .contact-info:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 2em;
+            min-width: 50px;
+        }
+
+        .contact-text h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .contact-text a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* About Page Styles */
+        .about-content {
+            padding: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .info-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
         .credits {
             text-align: center;
             margin-top: 30px;
@@ -274,6 +430,15 @@
         @media (max-width: 768px) {
             .options-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .checkbox-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-tabs {
+                overflow-x: auto;
             }
         }
     </style>
@@ -288,81 +453,192 @@
             <button class="lang-btn" onclick="setLanguage('pt')">Português</button>
         </div>
 
-        <div class="section">
-            <h3 id="overlayTitle">Select Overlay Image</h3>
-            <div class="file-input-wrapper">
-                <label for="overlayInput" class="file-input-label">
-                    <span id="overlayLabel">📷 Click to select overlay image (PNG with transparency)</span>
-                </label>
-                <input type="file" id="overlayInput" accept="image/*">
-                <div class="file-name" id="overlayFileName"></div>
-            </div>
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showPage('editor')" id="navEditor">Editor</button>
+            <button class="nav-tab" onclick="showPage('about')" id="navAbout">About</button>
+            <button class="nav-tab" onclick="showPage('contact')" id="navContact">Contact</button>
         </div>
 
-        <div class="section">
-            <h3 id="targetTitle">Select Target Images</h3>
-            <div class="file-input-wrapper">
-                <label for="targetInput" class="file-input-label">
-                    <span id="targetLabel">🖼️ Click to select images to watermark (multiple)</span>
-                </label>
-                <input type="file" id="targetInput" accept="image/*" multiple>
-                <div class="file-name" id="targetFileName"></div>
+        <!-- Editor Page -->
+        <div id="editorPage" class="page active">
+            <div class="section">
+                <h3 id="overlayTitle">Select Overlay Image</h3>
+                <div class="file-input-wrapper">
+                    <label for="overlayInput" class="file-input-label">
+                        <span id="overlayLabel">📷 Click to select overlay image (PNG with transparency)</span>
+                    </label>
+                    <input type="file" id="overlayInput" accept="image/*">
+                    <div class="file-name" id="overlayFileName"></div>
+                </div>
             </div>
-        </div>
 
-        <div class="section">
-            <h3 id="optionsTitle">Watermark Options</h3>
-            
-            <div class="options-grid">
-                <div class="option-group">
-                    <label for="position" id="positionLabel">Position</label>
-                    <select id="position">
-                        <option value="bottom_right">Bottom Right</option>
-                        <option value="bottom_left">Bottom Left</option>
-                        <option value="top_right">Top Right</option>
-                        <option value="top_left">Top Left</option>
-                    </select>
+            <div class="section">
+                <h3 id="targetTitle">Select Target Images</h3>
+                <div class="file-input-wrapper">
+                    <label for="targetInput" class="file-input-label">
+                        <span id="targetLabel">🖼️ Click to select images to watermark (multiple)</span>
+                    </label>
+                    <input type="file" id="targetInput" accept="image/*" multiple>
+                    <div class="file-name" id="targetFileName"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 id="optionsTitle">Watermark Options</h3>
+                
+                <div class="options-grid">
+                    <div class="option-group">
+                        <label for="position" id="positionLabel">Position</label>
+                        <select id="position">
+                            <option value="bottom_right">Bottom Right</option>
+                            <option value="bottom_left">Bottom Left</option>
+                            <option value="top_right">Top Right</option>
+                            <option value="top_left">Top Left</option>
+                        </select>
+                    </div>
+
+                    <div class="option-group">
+                        <label for="height" id="heightLabel">Height (px or %)</label>
+                        <input type="text" id="height" placeholder="e.g., 50 or 10%">
+                    </div>
+
+                    <div class="option-group">
+                        <label for="opacity" id="opacityLabel">Opacity (0-100%)</label>
+                        <input type="number" id="opacity" min="0" max="100" value="100">
+                    </div>
                 </div>
 
-                <div class="option-group">
-                    <label for="height" id="heightLabel">Height (px or %)</label>
-                    <input type="text" id="height" placeholder="e.g., 50 or 10%">
+                <div class="checkbox-row">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="autoAdjust">
+                        <label for="autoAdjust" id="autoAdjustLabel">Auto-adjust contrast based on background</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="enableRecolor">
+                        <label for="enableRecolor" id="recolorLabel">Enable color change</label>
+                    </div>
                 </div>
 
-                <div class="option-group">
-                    <label for="opacity" id="opacityLabel">Opacity (0-100%)</label>
-                    <input type="number" id="opacity" min="0" max="100" value="100">
-                </div>
-
-                <div class="option-group">
+                <div class="option-group" id="colorPickerGroup" style="display: none; margin-top: 15px;">
                     <label for="color" id="colorLabel">Recolor (optional)</label>
                     <input type="color" id="color" value="#000000">
                 </div>
             </div>
 
-            <div class="checkbox-group">
-                <input type="checkbox" id="enableRecolor">
-                <label for="enableRecolor" id="recolorLabel">Enable color change</label>
+            <button class="process-btn" id="processBtn" onclick="processImages()">
+                <span id="processBtnText">Process Images</span>
+            </button>
+
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill">0%</div>
+                </div>
+                <div class="status-text" id="statusText"></div>
             </div>
 
-            <div class="checkbox-group">
-                <input type="checkbox" id="autoAdjust">
-                <label for="autoAdjust" id="autoAdjustLabel">Auto-adjust contrast based on background</label>
+            <div class="preview-grid" id="previewGrid"></div>
+        </div>
+
+        <!-- About Page -->
+        <div id="aboutPage" class="page">
+            <div class="about-content">
+                <div class="info-section">
+                    <h2 id="aboutTitle">About Image Overlay</h2>
+                    <p id="aboutText1">Image Overlay is a powerful web-based tool designed to help you add watermarks to your images quickly and efficiently. Whether you're a photographer, designer, or content creator, this tool makes it easy to protect your work and brand your images.</p>
+                    <p id="aboutText2">This application runs entirely in your browser, meaning your images never leave your computer. All processing is done locally, ensuring your privacy and security.</p>
+                </div>
+
+                <h2 style="text-align: center; color: #333; margin: 30px 0 20px;" id="featuresTitle">Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3 id="feature1Title">Custom Colors</h3>
+                        <p id="feature1Text">Change watermark colors to match your brand or contrast with your images</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📐</div>
+                        <h3 id="feature2Title">Flexible Sizing</h3>
+                        <p id="feature2Text">Adjust watermark size using pixels or percentages for perfect proportions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎭</div>
+                        <h3 id="feature3Title">Opacity Control</h3>
+                        <p id="feature3Text">Fine-tune transparency levels from subtle to prominent</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 id="feature4Title">Auto-Adjust</h3>
+                        <p id="feature4Text">Automatically adjust watermark contrast based on background brightness</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📍</div>
+                        <h3 id="feature5Title">Position Control</h3>
+                        <p id="feature5Text">Place watermarks in any corner of your images</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 id="feature6Title">Batch Processing</h3>
+                        <p id="feature6Text">Process multiple images at once to save time</p>
+                    </div>
+                </div>
+
+                <div class="info-section" style="margin-top: 30px;">
+                    <h2 id="howToTitle">How to Use</h2>
+                    <p id="howToText1"><strong>1. Select Overlay:</strong> Choose your watermark image (preferably PNG with transparency)</p>
+                    <p id="howToText2"><strong>2. Select Images:</strong> Pick one or multiple images you want to watermark</p>
+                    <p id="howToText3"><strong>3. Customize:</strong> Adjust position, size, opacity, and colors as needed</p>
+                    <p id="howToText4"><strong>4. Process:</strong> Click the process button and download your watermarked images</p>
+                </div>
             </div>
         </div>
 
-        <button class="process-btn" id="processBtn" onclick="processImages()">
-            <span id="processBtnText">Process Images</span>
-        </button>
+        <!-- Contact Page -->
+        <div id="contactPage" class="page">
+            <div class="contact-content">
+                <div class="contact-card">
+                    <h2 style="text-align: center; color: #333; margin-bottom: 25px;" id="contactTitle">Get in Touch</h2>
+                    
+                    <div class="contact-info">
+                        <div class="contact-icon">👨‍💻</div>
+                        <div class="contact-text">
+                            <h3 id="devTitle">Developer</h3>
+                            <p>Emmanoel</p>
+                        </div>
+                    </div>
 
-        <div class="progress-container" id="progressContainer">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill">0%</div>
+                    <div class="contact-info">
+                        <div class="contact-icon">🐙</div>
+                        <div class="contact-text">
+                            <h3>GitHub</h3>
+                            <p><a href="https://github.com/Ium101" target="_blank">github.com/Ium101</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-text">
+                            <h3 id="feedbackTitle">Feedback & Support</h3>
+                            <p id="feedbackText">Found a bug or have a feature request? Open an issue on <a href="https://github.com/Ium101/Image-Overlay-Z" target="_blank">GitHub!</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-icon">⭐</div>
+                        <div class="contact-text">
+                            <h3 id="contributeTitle">Contribute</h3>
+                            <p id="contributeText">This is an open-source project. Contributions are welcome!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2 id="licenseTitle">License & Credits</h2>
+                    <p id="licenseText">This tool was created by Ium101 and is available for free use. Built with vanilla JavaScript, HTML5 Canvas API, and lots of ❤️.</p>
+                </div>
             </div>
-            <div class="status-text" id="statusText"></div>
         </div>
-
-        <div class="preview-grid" id="previewGrid"></div>
 
         <div class="credits">
             <p>Made by Ium101 from GitHub</p>
@@ -375,6 +651,9 @@
             en: {
                 mainTitle: "Image Overlay",
                 subtitle: "Add watermarks to your images with ease",
+                navEditor: "Editor",
+                navAbout: "About",
+                navContact: "Contact",
                 overlayTitle: "Select Overlay Image",
                 overlayLabel: "📷 Click to select overlay image (PNG with transparency)",
                 targetTitle: "Select Target Images",
@@ -389,11 +668,43 @@
                 processBtnText: "Process Images",
                 processing: "Processing: ",
                 done: "Done! Click images to download",
-                error: "Error: "
+                error: "Error: ",
+                aboutTitle: "About Image Overlay",
+                aboutText1: "Image Overlay is a powerful web-based tool designed to help you add watermarks to your images quickly and efficiently. Whether you're a photographer, designer, or content creator, this tool makes it easy to protect your work and brand your images.",
+                aboutText2: "This application runs entirely in your browser, meaning your images never leave your computer. All processing is done locally, ensuring your privacy and security.",
+                featuresTitle: "Features",
+                feature1Title: "Custom Colors",
+                feature1Text: "Change watermark colors to match your brand or contrast with your images",
+                feature2Title: "Flexible Sizing",
+                feature2Text: "Adjust watermark size using pixels or percentages for perfect proportions",
+                feature3Title: "Opacity Control",
+                feature3Text: "Fine-tune transparency levels from subtle to prominent",
+                feature4Title: "Auto-Adjust",
+                feature4Text: "Automatically adjust watermark contrast based on background brightness",
+                feature5Title: "Position Control",
+                feature5Text: "Place watermarks in any corner of your images",
+                feature6Title: "Batch Processing",
+                feature6Text: "Process multiple images at once to save time",
+                howToTitle: "How to Use",
+                howToText1: "1. Select Overlay: Choose your watermark image (preferably PNG with transparency)",
+                howToText2: "2. Select Images: Pick one or multiple images you want to watermark",
+                howToText3: "3. Customize: Adjust position, size, opacity, and colors as needed",
+                howToText4: "4. Process: Click the process button and download your watermarked images",
+                contactTitle: "Get in Touch",
+                devTitle: "Developer",
+                feedbackTitle: "Feedback & Support",
+                feedbackText: "Found a bug or have a feature request? Open an issue on GitHub!",
+                contributeTitle: "Contribute",
+                contributeText: "This is an open-source project. Contributions are welcome!",
+                licenseTitle: "License & Credits",
+                licenseText: "This tool was created by Ium101 and is available for free use. Built with vanilla JavaScript, HTML5 Canvas API, and lots of ❤️."
             },
             pt: {
                 mainTitle: "Sobreposição de Imagem",
                 subtitle: "Adicione marcas d'água às suas imagens com facilidade",
+                navEditor: "Editor",
+                navAbout: "Sobre",
+                navContact: "Contato",
                 overlayTitle: "Selecionar Imagem de Sobreposição",
                 overlayLabel: "📷 Clique para selecionar imagem de sobreposição (PNG com transparência)",
                 targetTitle: "Selecionar Imagens Alvo",
@@ -408,7 +719,36 @@
                 processBtnText: "Processar Imagens",
                 processing: "Processando: ",
                 done: "Concluído! Clique nas imagens para baixar",
-                error: "Erro: "
+                error: "Erro: ",
+                aboutTitle: "Sobre o Image Overlay",
+                aboutText1: "Image Overlay é uma ferramenta web poderosa projetada para ajudá-lo a adicionar marcas d'água às suas imagens de forma rápida e eficiente. Seja você fotógrafo, designer ou criador de conteúdo, esta ferramenta facilita proteger seu trabalho e marcar suas imagens.",
+                aboutText2: "Esta aplicação funciona inteiramente no seu navegador, o que significa que suas imagens nunca saem do seu computador. Todo o processamento é feito localmente, garantindo sua privacidade e segurança.",
+                featuresTitle: "Recursos",
+                feature1Title: "Cores Personalizadas",
+                feature1Text: "Altere as cores da marca d'água para combinar com sua marca ou contrastar com suas imagens",
+                feature2Title: "Tamanho Flexível",
+                feature2Text: "Ajuste o tamanho da marca d'água usando pixels ou porcentagens para proporções perfeitas",
+                feature3Title: "Controle de Opacidade",
+                feature3Text: "Ajuste os níveis de transparência de sutil a proeminente",
+                feature4Title: "Ajuste Automático",
+                feature4Text: "Ajusta automaticamente o contraste da marca d'água com base no brilho do fundo",
+                feature5Title: "Controle de Posição",
+                feature5Text: "Posicione marcas d'água em qualquer canto de suas imagens",
+                feature6Title: "Processamento em Lote",
+                feature6Text: "Processe várias imagens de uma vez para economizar tempo",
+                howToTitle: "Como Usar",
+                howToText1: "1. Selecionar Sobreposição: Escolha sua imagem de marca d'água (preferencialmente PNG com transparência)",
+                howToText2: "2. Selecionar Imagens: Escolha uma ou várias imagens que deseja marcar",
+                howToText3: "3. Personalizar: Ajuste posição, tamanho, opacidade e cores conforme necessário",
+                howToText4: "4. Processar: Clique no botão processar e baixe suas imagens marcadas",
+                contactTitle: "Entre em Contato",
+                devTitle: "Desenvolvedor",
+                feedbackTitle: "Feedback & Suporte",
+                feedbackText: "Encontrou um bug ou tem uma sugestão de recurso? Abra um issue no GitHub!",
+                contributeTitle: "Contribuir",
+                contributeText: "Este é um projeto de código aberto. Contribuições são bem-vindas!",
+                licenseTitle: "Licença & Créditos",
+                licenseText: "Esta ferramenta foi criada por Ium101 e está disponível para uso gratuito. Construída com JavaScript vanilla, HTML5 Canvas API e muito ❤️."
             }
         };
 
@@ -416,24 +756,45 @@
         let overlayImage = null;
         let targetImages = [];
 
+        // Toggle color picker visibility
+        document.getElementById('enableRecolor').addEventListener('change', function(e) {
+            const colorPickerGroup = document.getElementById('colorPickerGroup');
+            colorPickerGroup.style.display = e.target.checked ? 'flex' : 'none';
+        });
+
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected page
+            if (pageName === 'editor') {
+                document.getElementById('editorPage').classList.add('active');
+                document.querySelector('[onclick="showPage(\'editor\')"]').classList.add('active');
+            } else if (pageName === 'about') {
+                document.getElementById('aboutPage').classList.add('active');
+                document.querySelector('[onclick="showPage(\'about\')"]').classList.add('active');
+            } else if (pageName === 'contact') {
+                document.getElementById('contactPage').classList.add('active');
+                document.querySelector('[onclick="showPage(\'contact\')"]').classList.add('active');
+            }
+        }
+
         function setLanguage(lang) {
             currentLang = lang;
             const t = translations[lang];
             
-            document.getElementById('mainTitle').textContent = t.mainTitle;
-            document.getElementById('subtitle').textContent = t.subtitle;
-            document.getElementById('overlayTitle').textContent = t.overlayTitle;
-            document.getElementById('overlayLabel').textContent = t.overlayLabel;
-            document.getElementById('targetTitle').textContent = t.targetTitle;
-            document.getElementById('targetLabel').textContent = t.targetLabel;
-            document.getElementById('optionsTitle').textContent = t.optionsTitle;
-            document.getElementById('positionLabel').textContent = t.positionLabel;
-            document.getElementById('heightLabel').textContent = t.heightLabel;
-            document.getElementById('opacityLabel').textContent = t.opacityLabel;
-            document.getElementById('colorLabel').textContent = t.colorLabel;
-            document.getElementById('recolorLabel').textContent = t.recolorLabel;
-            document.getElementById('autoAdjustLabel').textContent = t.autoAdjustLabel;
-            document.getElementById('processBtnText').textContent = t.processBtnText;
+            // Update all text elements
+            Object.keys(t).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'BUTTON') {
+                        element.value = t[key];
+                    } else {
+                        element.textContent = t[key];
+                    }
+                }
+            });
 
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
