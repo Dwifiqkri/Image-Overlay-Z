@@ -56,7 +56,7 @@ A user-friendly graphical application that adds an image overlay over multiple i
     ```
 3.  The application window will open, allowing you to select your language and begin the process.
 
-Or open the page "Index.html" that is the recently created web version of the program.
+Or open the page **"Index.html"** that is the recently created web version of the program.
 
 For a detailed step-by-step guide, please refer to our **[User Manual](User_Manual.md)**.
 
@@ -104,7 +104,7 @@ Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sob
     ```
 3.  A janela da aplicação será aberta, permitindo que você escolha seu idioma e inicie o processo.
 
-Ou abra a página "Index.html" que é a versão web recém criada do programa.
+Ou abra a página **"Index.html"** que é a versão web recém criada do programa.
 
 Para um guia detalhado com o passo a passo, consulte o nosso **[Manual do Usuário](User_Manual.md)**.
 
